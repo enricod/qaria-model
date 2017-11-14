@@ -1,5 +1,7 @@
 package qariamodel
 
+import "fmt"
+
 type Stazione struct {
 	StazioneId int    `json:"StazioneId"`
 	Nome       string `json:"Nome"`
@@ -26,20 +28,24 @@ type MisureResp struct {
 }
 
 func ElencoStazioni() []Stazione {
+
+	baseUrl := "http://www.arpalombardia.it/sites/QAria/_layouts/15/QAria/DettaglioStazione.aspx"
+
 	rezzato := Stazione{StazioneId: 661,
 		Nome:       "Rezzato",
 		Inquinanti: "PM10,NO2,CO",
-		Url:        "http://www2.arpalombardia.it/sites/QAria/_layouts/15/QAria/DettaglioStazione.aspx?IdStaz=661"}
+		Url:        fmt.Sprintf("%s?zona=BS&comune=918&IdStaz=%s&isPDV=True", baseUrl, "661")}
 
 	milano := Stazione{StazioneId: 539,
 		Nome:       "Milano Liguria",
 		Inquinanti: "NO2,CO",
-		Url:        "http://www2.arpalombardia.it/sites/qaria/_layouts/15/qaria/DettaglioStazione.aspx?zona=MI&comune=451&IdStaz=539&isPDV=True"}
+		Url:        fmt.Sprintf("%s?zona=MI&comune=918&IdStaz=%s&isPDV=True", baseUrl, "539")}
 
-	bresciaTurati := Stazione{StazioneId:786,
-		Nome:"Brescia, via Turati",
-		Inquinanti:"NO2,CO,Benzene",
-		Url:"http://www2.arpalombardia.it/sites/QAria/_layouts/15/QAria/DettaglioStazione.aspx?zona=BS&comune=786&IdStaz=652&isPDV=True"}
-	stazioni := []Stazione{rezzato, milano, bresciaTurati}
+	bresciaTurati := Stazione{StazioneId: 652,
+		Nome:       "Brescia, via Turati",
+		Inquinanti: "NO2,CO,Benzene",
+		Url:        fmt.Sprintf("%s?zona=BS&comune=918&IdStaz=%s&isPDV=True", baseUrl, "652")}
+
+	stazioni := []Stazione{bresciaTurati, milano, rezzato}
 	return stazioni
 }
