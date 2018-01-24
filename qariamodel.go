@@ -2,11 +2,12 @@ package qariamodel
 
 import "fmt"
 
+// Stazione definizione struttura stazione
 type Stazione struct {
-	StazioneId int    `json:"StazioneId"`
+	StazioneID int    `json:"StazioneID"`
 	Nome       string `json:"Nome"`
 	Url        string `json:"Url"`
-	Inquinanti string `json:"Inquinanti"`
+	// Inquinanti string `json:"Inquinanti"`
 }
 
 type Stazioni []Stazione
@@ -19,7 +20,7 @@ type Misura struct {
 	Id         int
 	DataMisura string
 	Inquinante string
-	StazioneId int
+	StazioneID int
 	Valore     float64
 }
 
@@ -32,21 +33,18 @@ func ElencoStazioni() []Stazione {
 	baseUrl := "http://www.arpalombardia.it/sites/QAria/_layouts/15/QAria/DettaglioStazione.aspx"
 
 	rezzato := Stazione{
-		StazioneId: 661,
+		StazioneID: 661,
 		Nome:       "Rezzato",
-		Inquinanti: "PM10,NO2,CO",
 		Url:        fmt.Sprintf("%s?zona=BS&comune=918&IdStaz=%s&isPDV=True", baseUrl, "661")}
 
 	milano := Stazione{
-		StazioneId: 539,
+		StazioneID: 539,
 		Nome:       "Milano Liguria",
-		Inquinanti: "NO2,CO",
-		Url:        fmt.Sprintf("%s?zona=MI&comune=918&IdStaz=%s&isPDV=True", baseUrl, "539")}
+		Url:        fmt.Sprintf("%s?zona=MI&comune=451&IdStaz=%s&isPDV=True", baseUrl, "539")}
 
 	bresciaTurati := Stazione{
-		StazioneId: 652,
+		StazioneID: 652,
 		Nome:       "Brescia, via Turati",
-		Inquinanti: "NO2,CO,Benzene",
 		Url:        fmt.Sprintf("%s?zona=BS&comune=918&IdStaz=%s&isPDV=True", baseUrl, "652")}
 
 	/*
@@ -57,9 +55,8 @@ func ElencoStazioni() []Stazione {
 			Url:        fmt.Sprintf("%s?zona=BS&comune=830&IdStaz=%s&isPDV=True", baseUrl, "656")}
 	*/
 	cremonaCadorna := Stazione{
-		StazioneId: 627,
+		StazioneID: 627,
 		Nome:       "Cremona, Cadorna",
-		Inquinanti: "PM10,PM25,NO2,SO2,CO,Benzene",
 		Url:        fmt.Sprintf("%s?zona=BS&comune=1189&IdStaz=%s&isPDV=True", baseUrl, "627")}
 
 	stazioni := []Stazione{bresciaTurati, milano, rezzato, cremonaCadorna}
